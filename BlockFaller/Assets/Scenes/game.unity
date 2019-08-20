@@ -129,10 +129,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 345041807}
+  - component: {fileID: 345041809}
   - component: {fileID: 345041806}
   - component: {fileID: 345041805}
   - component: {fileID: 345041808}
-  - component: {fileID: 345041809}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345041804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495331263}
   - component: {fileID: 495331262}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,6 +421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae7a72789216fd48907b466752398ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 3919406550155233148, guid: 946e8136c2add6b4f84eea33a0cfbeca,
+    type: 3}
 --- !u!1 &569332450
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae7a72789216fd48907b466752398ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 2046361212427675873, guid: 971182a3ccc8f6c44998df62d41fdcf5,
+    type: 3}
 --- !u!1 &679719208
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894037534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 569332451}
@@ -734,6 +738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae7a72789216fd48907b466752398ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 6905899877440897768, guid: 277b33dce2ac8d94fbfd8f381c78a6ef,
+    type: 3}
 --- !u!1 &1482000371
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,6 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae7a72789216fd48907b466752398ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 996738259809291308, guid: 6323dfe43f67ff844a36f5722a0e42a5, type: 3}
 --- !u!1 &1558878647
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42675b19dae7ed4b84fe06ce7151ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 70
-  spawnTime: 6
+  speed: 120
+  spawnTime: 2.5
   destroyEffecttime: 0.5
+  percentIncerase: 0.01
