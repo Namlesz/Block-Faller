@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VailidController : MonoBehaviour
+public class RotationController : MonoBehaviour
 {
-    public float rotation = 0;
+    private float rotation = 0;
     private Quaternion startRotation;
     private Quaternion endRotation;
     private float rotationProgress = -1;
