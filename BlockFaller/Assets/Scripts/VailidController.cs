@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class VailidController : MonoBehaviour
 {
-    GameObject square;
     public float rotation = 0;
-    public float rotateSpeed;
-    private bool isRotating;
-    private void Start()
-    {
-        isRotating = false;
-        square = GameObject.Find("SquareValid");
-    }
+    private Quaternion startRotation;
+    private Quaternion endRotation;
+    private float rotationProgress = -1;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -20,7 +16,6 @@ public class VailidController : MonoBehaviour
             if (rotation >= 360 || rotation <= -360)
                 rotation = 0;
 
-            isRotating = true;
 
             if (Input.mousePosition.x > Screen.width / 2)
             {
@@ -31,24 +26,21 @@ public class VailidController : MonoBehaviour
             {
                 rotation += 90;
             }
+            StartRotating(rotation);
+
         }
-        Rotate();
+
+        if (rotationProgress < 1 && rotationProgress >= 0)
+        {
+            rotationProgress += Time.deltaTime * 5;
+            transform.rotation = Quaternion.Lerp(startRotation, endRotation, rotationProgress);
+        }
     }
 
-    void Rotate()
+    void StartRotating(float zPosition)
     {
-        if (isRotating)
-        {
-            Vector3 to = new Vector3(0,0, rotation);
-            if (Vector3.Distance(transform.eulerAngles, to) > 0.01f)
-            {
-                transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, to, Time.deltaTime*rotateSpeed);
-            }
-            else
-            {
-                transform.eulerAngles = to;
-                isRotating = false;
-            }
-        }
+        startRotation = transform.rotation;
+        endRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, zPosition);
+        rotationProgress = 0;
     }
 }
