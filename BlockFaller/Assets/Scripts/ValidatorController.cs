@@ -12,6 +12,7 @@ public class ValidatorController : MonoBehaviour
     {
         vars = GameObject.Find("GameController").GetComponent<Variable>();
     }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (CompareTag(col.tag))

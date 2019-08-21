@@ -8,6 +8,15 @@ public class RotationController : MonoBehaviour
     private Quaternion startRotation;
     private Quaternion endRotation;
     private float rotationProgress = -1;
+    public Sprite[] circleSprites;
+    private SpriteRenderer sprite;
+    private int startPos;
+    private void Start()
+    {
+        startPos = 0;
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.sprite = circleSprites[startPos];
+    }
 
     void Update()
     {
@@ -20,11 +29,13 @@ public class RotationController : MonoBehaviour
             if (Input.mousePosition.x > Screen.width / 2)
             {
                 rotation -= 90;
+                ChangeSprite(-1);
             }
 
             if (Input.mousePosition.x < Screen.width / 2)
             {
                 rotation += 90;
+                ChangeSprite(1);
             }
             StartRotating(rotation);
 
@@ -35,6 +46,20 @@ public class RotationController : MonoBehaviour
             rotationProgress += Time.deltaTime * 5;
             transform.rotation = Quaternion.Lerp(startRotation, endRotation, rotationProgress);
         }
+    }
+
+    void ChangeSprite(int i)
+    {
+        startPos += i;
+        if (startPos < 0)
+        {
+            startPos = 3;
+        }
+        if (startPos > 3)
+        {
+            startPos = 0;
+        }
+        sprite.sprite = circleSprites[startPos];
     }
 
     void StartRotating(float zPosition)
