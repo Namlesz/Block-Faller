@@ -21,6 +21,7 @@ public class ValidatorController : MonoBehaviour
             Destroy(instatedObjc,2f);
 
             Variable.points++;
+            vars.AddPoint(1);
             Debug.Log(Variable.points);
             Destroy(col.gameObject);
         }

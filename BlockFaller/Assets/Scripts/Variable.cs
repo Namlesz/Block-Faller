@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Variable : MonoBehaviour
 {
@@ -10,17 +11,18 @@ public class Variable : MonoBehaviour
     public static int points;
     public static bool shakeCam;
     public float percentIncerase;
+
+    private Text score; 
     private void Start()
     {
         points = 0;
         shakeCam = false;
+        score = GameObject.Find("Score").GetComponent<Text>();
     }
-    private void Update()
+
+    public void AddPoint(int point)
     {
-        //if (points % 10 == 0 && points != 0)
-        //{
-        //    spawnTime -= spawnTime * percentIncerase;
-        //    speed += spawnTime * percentIncerase;
-        //}
+        score.text = points.ToString();
     }
+
 }

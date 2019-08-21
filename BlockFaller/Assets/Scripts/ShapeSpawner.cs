@@ -21,6 +21,23 @@ public class ShapeSpawner : MonoBehaviour
             int randShape = Random.Range(0, 3);
             Instantiate(shapes[randShape], new Vector3(transform.position.x, transform.position.y, transform.position.z),Quaternion.identity);
             currentTime = 0;
+            
+            if(vars.speed < 450)
+            {
+                vars.speed += vars.speed * vars.percentIncerase;
+            }
+            else
+            {
+                vars.speed += vars.speed * 0.001f;
+            }
+
+
+            if (vars.spawnTime > 0.6f)
+                vars.spawnTime -= vars.spawnTime * vars.percentIncerase;
+            else if (vars.spawnTime > 0.3)
+                vars.spawnTime -= vars.spawnTime * 0.01f;
+            else
+                vars.spawnTime = 0.299f;
         }
     }
 }
