@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class RotationController : MonoBehaviour
 {
-    private float rotation = 0;
     private Quaternion startRotation;
     private Quaternion endRotation;
+    private float rotation = 0;
     private float rotationProgress = -1;
     public Sprite[] circleSprites;
     private SpriteRenderer sprite;
     private int startPos;
+
     private void Start()
     {
         startPos = 0;
@@ -22,42 +23,34 @@ public class RotationController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (rotation >= 360 || rotation <= -360)
-                rotation = 0;
-
-
             if (Input.mousePosition.x > Screen.width / 2)
             {
-                rotation -= 90;
-                ChangeSprite(-1);
+                ChangeSpriteAndRotation(-1,-90);
             }
 
             if (Input.mousePosition.x < Screen.width / 2)
             {
-                rotation += 90;
-                ChangeSprite(1);
+                ChangeSpriteAndRotation(1,90);
             }
             StartRotating(rotation);
-
         }
-
-        if (rotationProgress < 1 && rotationProgress >= 0)
-        {
-            rotationProgress += Time.deltaTime * 5;
-            transform.rotation = Quaternion.Lerp(startRotation, endRotation, rotationProgress);
-        }
+        ContinueRotToEnd();
     }
 
-    void ChangeSprite(int i)
+    void ChangeSpriteAndRotation(int i, int rot)
     {
+        rotation += rot;
         startPos += i;
+
         if (startPos < 0)
         {
             startPos = 3;
         }
+
         if (startPos > 3)
         {
             startPos = 0;
+
         }
         sprite.sprite = circleSprites[startPos];
     }
@@ -67,5 +60,14 @@ public class RotationController : MonoBehaviour
         startRotation = transform.rotation;
         endRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, zPosition);
         rotationProgress = 0;
+    }
+
+    void ContinueRotToEnd()
+    {
+        if (rotationProgress < 1 && rotationProgress >= 0)
+        {
+            rotationProgress += Time.deltaTime * 5;
+            transform.rotation = Quaternion.Lerp(startRotation, endRotation, rotationProgress);
+        }
     }
 }

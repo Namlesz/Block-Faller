@@ -5,14 +5,12 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
     public Transform camTransform;
+    Vector3 originalPos;
 
     public float shakeDuration = 0f;
     private float shakeTime;
-
     public float shakeAmount = 0.7f;
     public float decreaseFactor = 1.0f;
-
-    Vector3 originalPos;
 
     void Awake()
     {
@@ -30,7 +28,12 @@ public class CameraShake : MonoBehaviour
 
     void Update()
     {
-        if(Variable.shakeCam == true)
+        ShakeCam();
+    }
+
+    void ShakeCam()
+    {
+        if (Variable.shakeCam == true)
         {
             if (shakeDuration > 0)
             {

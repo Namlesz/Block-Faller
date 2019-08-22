@@ -5,9 +5,10 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class ValidatorController : MonoBehaviour
 {
-    Variable vars;
-    ChromaticAberration aberration;
+    private Variable vars;
+    private ChromaticAberration aberration;
     public GameObject particle;
+
     private void Start()
     {
         vars = GameObject.Find("GameController").GetComponent<Variable>();
@@ -17,20 +18,17 @@ public class ValidatorController : MonoBehaviour
     {
         if (CompareTag(col.tag))
         {
-            GameObject instatedObjc = Instantiate(particle, col.transform.position, Quaternion.identity);
-            Destroy(instatedObjc,2f);
-
-            Variable.points++;
             vars.AddPoint(1);
-            Debug.Log(Variable.points);
+
+            Destroy(Instantiate(particle, col.transform.position, Quaternion.identity), 2f);
             Destroy(col.gameObject);
         }
-
         else
         {
             applyPostProccesing();
             Destroy(col.gameObject);
-            Debug.Log("Mistake!");
+            vars.Hurt(1);
+            Debug.Log(vars.lives);
         }
     }
 
