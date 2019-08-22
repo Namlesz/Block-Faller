@@ -18,9 +18,13 @@ public class Variable : MonoBehaviour
 
     private Text score;
     private GameObject[] heart;
+    public AudioClip pointAudio;
+    public AudioClip hurtAudio;
+    private AudioSource audio;
 
     private void Start()
     {
+        audio = GetComponent<AudioSource>();
         points = 0;
         shakeCam = lostFlag = false;
         heart = GameObject.FindGameObjectsWithTag("Heart");
@@ -32,10 +36,12 @@ public class Variable : MonoBehaviour
     {
         points += point;
         score.text = points.ToString();
+        audio.PlayOneShot(pointAudio);
     }
 
     public void Hurt(int hitPoint)
     {
+        audio.PlayOneShot(hurtAudio);
         lives -= hitPoint;
         Destroy(heart[lives].gameObject);
         if (lives <= 0)

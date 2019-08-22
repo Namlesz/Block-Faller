@@ -28,7 +28,6 @@ public class ValidatorController : MonoBehaviour
             applyPostProccesing();
             Destroy(col.gameObject);
             vars.Hurt(1);
-            Debug.Log(vars.lives);
         }
     }
 
