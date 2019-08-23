@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIController : MonoBehaviour
+public class TextColorChanger : MonoBehaviour
 {
     private float timeLeft;
     private Color targetColor;
-    private Text text;
+    public GameObject[] texts;
 
-    private void Start()
-    {
-        text = GameObject.Find("Score").GetComponent<Text>();
-    }
+    //private void Start()
+    //{
+
+    //}
 
     void Update()
     {
@@ -23,15 +23,19 @@ public class UIController : MonoBehaviour
     {
         if (timeLeft <= Time.deltaTime)
         {
-            text.color = targetColor;
-
+            foreach(var text in texts)
+            {
+                text.GetComponent<Text>().color = targetColor;
+            }
             targetColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             timeLeft = 1.0f;
         }
         else
         {
-            text.color = Color.Lerp(text.color, targetColor, Time.deltaTime / timeLeft);
-
+            foreach (var text in texts)
+            {
+                text.GetComponent<Text>().color = Color.Lerp(text.GetComponent<Text>().color, targetColor, Time.deltaTime / timeLeft); ;
+            }
             timeLeft -= Time.deltaTime;
         }
     }

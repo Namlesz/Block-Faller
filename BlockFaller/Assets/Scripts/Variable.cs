@@ -20,11 +20,14 @@ public class Variable : MonoBehaviour
     private GameObject[] heart;
     public AudioClip pointAudio;
     public AudioClip hurtAudio;
-    private AudioSource audio;
+    private AudioSource audios;
+    private GameObject lostView;
 
     private void Start()
     {
-        audio = GetComponent<AudioSource>();
+        lostView = GameObject.Find("LostView");
+        lostView.gameObject.SetActive(false);
+        audios = GetComponent<AudioSource>();
         points = 0;
         shakeCam = lostFlag = false;
         heart = GameObject.FindGameObjectsWithTag("Heart");
@@ -36,15 +39,22 @@ public class Variable : MonoBehaviour
     {
         points += point;
         score.text = points.ToString();
-        audio.PlayOneShot(pointAudio);
+        audios.PlayOneShot(pointAudio);
     }
 
     public void Hurt(int hitPoint)
     {
-        audio.PlayOneShot(hurtAudio);
+        audios.PlayOneShot(hurtAudio);
         lives -= hitPoint;
         Destroy(heart[lives].gameObject);
         if (lives <= 0)
-            lostFlag = true;
+            EndGame();
+    }
+    private void EndGame()
+    {
+        lostFlag = true;
+        lostView.gameObject.SetActive(true);
+        GameObject.Find("SquareValid").gameObject.SetActive(false);
+        GameObject.Find("EndScore").GetComponent<Text>().text = points.ToString();
     }
 }
