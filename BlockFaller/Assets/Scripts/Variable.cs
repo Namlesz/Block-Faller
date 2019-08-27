@@ -20,6 +20,7 @@ public class Variable : MonoBehaviour
     private GameObject[] heart;
     public AudioClip pointAudio;
     public AudioClip hurtAudio;
+    public AudioClip gameEndAudio;
     private AudioSource audios;
     private GameObject lostView;
 
@@ -52,9 +53,12 @@ public class Variable : MonoBehaviour
     }
     private void EndGame()
     {
+        audios.PlayOneShot(gameEndAudio);
         lostFlag = true;
         lostView.gameObject.SetActive(true);
         GameObject.Find("SquareValid").gameObject.SetActive(false);
+        GameObject.Find("InGameView").gameObject.SetActive(false);
+
         GameObject.Find("EndScore").GetComponent<Text>().text = points.ToString();
     }
 }
