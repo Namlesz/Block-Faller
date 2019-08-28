@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Variable : MonoBehaviour
@@ -34,6 +32,7 @@ public class Variable : MonoBehaviour
         heart = GameObject.FindGameObjectsWithTag("Heart");
         score = GameObject.Find("Score").GetComponent<Text>();
         lives = 3;
+        Application.targetFrameRate = 300;
     }
 
     public void AddPoint(int point)

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TextColorChanger : MonoBehaviour
@@ -8,11 +6,6 @@ public class TextColorChanger : MonoBehaviour
     private float timeLeft;
     private Color targetColor;
     public GameObject[] texts;
-
-    //private void Start()
-    //{
-
-    //}
 
     void Update()
     {

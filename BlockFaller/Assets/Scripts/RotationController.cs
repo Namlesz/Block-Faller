@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RotationController : MonoBehaviour
 {
@@ -34,6 +32,11 @@ public class RotationController : MonoBehaviour
             }
             StartRotating(rotation);
         }
+        ContinueRotToEnd();
+    }
+
+    private void FixedUpdate()
+    {
         ContinueRotToEnd();
     }
 
