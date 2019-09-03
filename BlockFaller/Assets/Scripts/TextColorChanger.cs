@@ -7,12 +7,9 @@ public class TextColorChanger : MonoBehaviour
     private Color targetColor;
     public GameObject[] texts;
 
-    void Update()
-    {
-        updatedColor();
-    }
+    void Update() => UpdatedColor();
 
-    void updatedColor()
+    private void UpdatedColor()
     {
         if (timeLeft <= Time.deltaTime)
         {

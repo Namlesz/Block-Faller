@@ -17,7 +17,7 @@ public class RotationController : MonoBehaviour
         sprite.sprite = circleSprites[startPos];
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -35,12 +35,9 @@ public class RotationController : MonoBehaviour
         ContinueRotToEnd();
     }
 
-    private void FixedUpdate()
-    {
-        ContinueRotToEnd();
-    }
+    private void FixedUpdate() => ContinueRotToEnd();
 
-    void ChangeSpriteAndRotation(int i, int rot)
+    private void ChangeSpriteAndRotation(int i, int rot)
     {
         rotation += rot;
         startPos += i;
@@ -58,14 +55,14 @@ public class RotationController : MonoBehaviour
         sprite.sprite = circleSprites[startPos];
     }
 
-    void StartRotating(float zPosition)
+    private void StartRotating(float zPosition)
     {
         startRotation = transform.rotation;
         endRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, zPosition);
         rotationProgress = 0;
     }
 
-    void ContinueRotToEnd()
+    private void ContinueRotToEnd()
     {
         if (rotationProgress < 1 && rotationProgress >= 0)
         {

@@ -6,7 +6,7 @@ public class MusicController : MonoBehaviour
     public AudioClip firstMusic;
     public AudioClip secondMusic;
     private AudioSource audios;
-    void Awake()
+    private void Awake()
     {
         DontDestroyOnLoad(this);
 

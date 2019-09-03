@@ -12,15 +12,13 @@ public class ShapeSpawner : MonoBehaviour
         currentTime = 0;
     }
 
-    void Update()
+    private void Update()
     {
         if (!Variable.lostFlag)
             Spawn();
-        else
-            Debug.Log("LOST");
     }
 
-    void Spawn()
+    private void Spawn()
     {
         currentTime += Time.fixedDeltaTime;
         if (currentTime >= vars.spawnTime)

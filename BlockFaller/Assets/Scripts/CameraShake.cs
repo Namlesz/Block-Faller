@@ -10,7 +10,7 @@ public class CameraShake : MonoBehaviour
     public float shakeAmount = 0.7f;
     public float decreaseFactor = 1.0f;
 
-    void Awake()
+    private void Awake()
     {
         if (camTransform == null)
         {
@@ -19,17 +19,11 @@ public class CameraShake : MonoBehaviour
         shakeTime = shakeDuration;
     }
 
-    void OnEnable()
-    {
-        originalPos = camTransform.localPosition;
-    }
+    private void OnEnable() => originalPos = camTransform.localPosition;
 
-    void Update()
-    {
-        ShakeCam();
-    }
+    private void Update() => ShakeCam();
 
-    void ShakeCam()
+    private void ShakeCam()
     {
         if (Variable.shakeCam == true)
         {

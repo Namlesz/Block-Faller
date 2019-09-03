@@ -2,7 +2,7 @@
 
 public class ShapeMove : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         Variable vars = GameObject.Find("GameController").GetComponent<Variable>();
         GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-vars.speed)*Time.fixedDeltaTime*1000);

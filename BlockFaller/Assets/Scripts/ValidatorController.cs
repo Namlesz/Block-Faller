@@ -7,12 +7,9 @@ public class ValidatorController : MonoBehaviour
     private ChromaticAberration aberration;
     public GameObject particle;
 
-    private void Start()
-    {
-        vars = GameObject.Find("GameController").GetComponent<Variable>();
-    }
+    private void Start() => vars = GameObject.Find("GameController").GetComponent<Variable>();
 
-    void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (CompareTag(col.tag))
         {
@@ -23,13 +20,13 @@ public class ValidatorController : MonoBehaviour
         }
         else
         {
-            applyPostProccesing();
+            ApplyPostProccesing();
             Destroy(col.gameObject);
             vars.Hurt(1);
         }
     }
 
-    void applyPostProccesing()
+    private void ApplyPostProccesing()
     {
         aberration = ScriptableObject.CreateInstance<ChromaticAberration>();
         aberration.enabled.Override(true);

@@ -22,8 +22,11 @@ public class Variable : MonoBehaviour
     private AudioSource audios;
     private GameObject lostView;
 
+
     private void Start()
     {
+        PlayGameScript.UnlockAchievement(GPGSIds.achievement_first_play);
+
         lostView = GameObject.Find("LostView");
         lostView.gameObject.SetActive(false);
         audios = GetComponent<AudioSource>();
@@ -37,6 +40,8 @@ public class Variable : MonoBehaviour
 
     public void AddPoint(int point)
     {
+        PlayGameScript.UnlockAchievement(GPGSIds.achievement_first_point);
+
         points += point;
         score.text = points.ToString();
         audios.PlayOneShot(pointAudio);
@@ -52,6 +57,9 @@ public class Variable : MonoBehaviour
     }
     private void EndGame()
     {
+        GoogleGameServices_End(points);
+        SetHigscoreLocal(points);
+
         audios.PlayOneShot(gameEndAudio);
         lostFlag = true;
         lostView.gameObject.SetActive(true);
@@ -59,5 +67,27 @@ public class Variable : MonoBehaviour
         GameObject.Find("InGameView").gameObject.SetActive(false);
 
         GameObject.Find("EndScore").GetComponent<Text>().text = points.ToString();
+    }
+
+    private void GoogleGameServices_End(int points)
+    {
+        PlayGameScript.AddScoreToLeaderboard(GPGSIds.leaderboard_top_scores, points);
+        PlayGameScript.IncrementAchievement(GPGSIds.achievement_10_points, points);
+        PlayGameScript.IncrementAchievement(GPGSIds.achievement_first_die, points);
+        PlayGameScript.IncrementAchievement(GPGSIds.achievement_100_points, points);
+        PlayGameScript.IncrementAchievement(GPGSIds.achievement_you_are_awesome, 1);
+    }
+
+    private void SetHigscoreLocal(int points)
+    {
+        if (!PlayerPrefs.HasKey("Highscore"))
+        {
+            PlayerPrefs.SetInt("Highscore", points);
+        }
+        else if (PlayerPrefs.GetInt("Highscore") < points)
+        {
+            PlayGameScript.UnlockAchievement(GPGSIds.achievement_beat_your_highscore);
+            PlayerPrefs.SetInt("Highscore", points);
+        }
     }
 }
